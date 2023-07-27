@@ -1,0 +1,5 @@
+package com.at.rest.config;
+
+public class CorsConfig {
+
+}

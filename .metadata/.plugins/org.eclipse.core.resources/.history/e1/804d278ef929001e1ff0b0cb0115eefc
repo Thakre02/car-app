@@ -1,0 +1,36 @@
+package com.at.rest.carserver.carcontroller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.at.rest.carserver.carmodel.Car;
+import com.at.rest.carserver.carservice.CarService;
+
+@RestController
+@RequestMapping("/api")
+public class CarController {
+	
+	@Autowired
+	CarService carService;
+	
+	@GetMapping("/carserver")
+	public String sayHey() {
+		return ("Welcome");
+	}
+	
+	@GetMapping("/cars")
+	public List<Car> getAllCars(){
+		return carService.getAllCars();
+	}
+	
+	@GetMapping("/{id}")
+	public List<Car> getCarById(@PathVariable int id){
+		return carService.getCarById(id);
+	}
+	
+}

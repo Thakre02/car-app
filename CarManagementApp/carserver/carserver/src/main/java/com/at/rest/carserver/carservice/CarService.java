@@ -1,0 +1,62 @@
+package com.at.rest.carserver.carservice;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.at.rest.carserver.CarDAO;
+import com.at.rest.carserver.carmodel.Car;
+
+@Service
+public class CarService {
+	
+	@Autowired
+	CarDAO carRepository;
+
+	public List<Car> getAllCars() {
+		// TODO Auto-generated method stub
+		return carRepository.findAll();
+	}
+
+	public Car getCarById(int id) {
+		// TODO Auto-generated method stub
+		return carRepository.findById(id).get();
+	}
+
+	public Car createCar(Car newCar) {
+		// TODO Auto-generated method stub
+		return carRepository.save(newCar);
+	}
+
+	public Car updateCarById(int id, Car updatedCar) {
+		// TODO Auto-generated method stub
+		Car existingCar= carRepository.findById(id).get();
+		if (existingCar!=null) {
+			existingCar.setColor(updatedCar.getColor());
+			existingCar.setModel(updatedCar.getModel());
+			existingCar.setPrice(updatedCar.getPrice());
+			
+			Car updatedcar1= carRepository.save(existingCar);
+			
+			return updatedcar1;
+			
+			
+		}else {
+			return null;
+		}
+	}
+
+	public Boolean deleteBookById(int id) {
+		// TODO Auto-generated method stub
+		Car existingCar= carRepository.findById(id).get();
+		if (existingCar!=null) {
+			carRepository.deleteById(id);
+			return true;
+		}
+		else {
+			return false;
+		}
+		}
+	}
+	

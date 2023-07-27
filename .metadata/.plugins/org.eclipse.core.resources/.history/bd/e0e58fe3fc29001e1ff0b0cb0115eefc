@@ -1,0 +1,57 @@
+package com.at.rest.carserver.carcontroller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.at.rest.carserver.carmodel.Car;
+import com.at.rest.carserver.carservice.CarService;
+
+@RestController
+@RequestMapping("/api")
+public class CarController {
+	
+	@Autowired
+	CarService carService;
+	
+	@GetMapping("/carserver")
+	public String sayHey() {
+		return ("Welcome");
+	}
+	
+	@GetMapping("/cars")
+	public List<Car> getAllCars(){
+		return carService.getAllCars();
+	}
+	
+	@GetMapping("/{id}")
+	public Car getCarById(@PathVariable int id){
+		return carService.getCarById(id);
+	}
+	
+	@PostMapping("/")
+	public Car createCar(@RequestBody Car newCar) {
+		return carService.createCar(newCar);
+	}
+	
+	@PutMapping("/{id}")
+	public Car updateCarById(@PathVariable int id, @RequestBody Car updatedCar) {
+		return carService.updateCarById(id,updatedCar);
+		
+	}
+	
+	@DeleteMapping("/{id}")
+	public Boolean deleteBookById(@PathVariable int id) {
+		return carService.deleteBookById(id);
+		
+	}
+	
+}

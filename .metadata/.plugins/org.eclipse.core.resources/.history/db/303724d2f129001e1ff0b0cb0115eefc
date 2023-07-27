@@ -1,0 +1,5 @@
+package com.at.rest.carserver.carmodel;
+
+public class Car {
+
+}

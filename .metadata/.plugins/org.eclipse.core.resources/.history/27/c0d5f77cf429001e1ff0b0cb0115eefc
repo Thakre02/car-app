@@ -1,0 +1,15 @@
+package com.at.rest.carserver.carservice;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.at.rest.carserver.CarDAO;
+
+@Service
+public class CarService {
+	
+	@Autowired
+	CarDAO carRepository;
+	
+
+}

@@ -1,0 +1,23 @@
+package com.at.rest.carserver.carservice;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.at.rest.carserver.CarDAO;
+import com.at.rest.carserver.carmodel.Car;
+
+@Service
+public class CarService {
+	
+	@Autowired
+	CarDAO carRepository;
+
+	public List<Car> getAllCars() {
+		// TODO Auto-generated method stub
+		return carRepository.findAll();
+	}
+	
+
+}
